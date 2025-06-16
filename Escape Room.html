@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Escape Room Pos 3</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 30px auto; }
+    .question-container { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 10px; font-weight: bold; }
+    input[type="text"] { width: 100%; padding: 8px; font-size: 1em; }
+    button { padding: 10px 20px; font-size: 1em; cursor: pointer; }
+    #result { margin-top: 20px; font-weight: bold; color: red; }
+  </style>
+</head>
+<body>
+
+  <h2>ESCAPE ROOM POS 3 & POS 4‼️</h2>
+
+  <div class="question-container">
+    <label id="questionLabel" for="answerInput"></label>
+    <input type="text" id="answerInput" />
+  </div>
+
+  <button onclick="submitAnswer()">Submit Jawaban</button>
+
+  <div id="result"></div>
+
+  <script>
+    const questions = [
+      { text: "Masukkan Kode yang Baru Ditemukan:", answer: "9583" },
+      { text: "Pos 3, Kerjakkan Puzzlenya. Setelah itu input jawabannya!(clue:pindahkan):", answer: "86" },
+      { text: "Pos 3, Cari kode tersembunyi dari dua gambar tersebut. Gabungkan! (clue:4 angka):", answer: "5146" },
+      { text: "Pos 4, Hitunglah seluruh total angkanya jika dijumlah!! (clue:3 angka):", answer: "455" }
+    ];
+
+    let currentIndex = 0;
+
+    const questionLabel = document.getElementById("questionLabel");
+    const answerInput = document.getElementById("answerInput");
+    const resultDiv = document.getElementById("result");
+    const submitBtn = document.querySelector("button");
+
+    function showQuestion() {
+      if (currentIndex < questions.length) {
+        questionLabel.textContent = questions[currentIndex].text;
+        answerInput.value = "";
+        answerInput.style.display = "inline-block";
+        submitBtn.style.display = "inline-block";
+        resultDiv.textContent = "";
+        resultDiv.style.color = "red";
+        answerInput.focus();
+      } else {
+        questionLabel.textContent = "";
+        answerInput.style.display = "none";
+        submitBtn.style.display = "none";
+        resultDiv.style.color = "green";
+        resultDiv.textContent = "Selamat! Kalian Berhasil Menyelesaikan 'Escape Room'.";
+      }
+    }
+
+    function submitAnswer() {
+      const userAnswer = answerInput.value.trim();
+      if (userAnswer === questions[currentIndex].answer) {
+        currentIndex++;
+        showQuestion();
+      } else {
+        resultDiv.textContent = "Jawaban salah, ayo coba lagi!";
+        answerInput.focus();
+      }
+    }
+
+    // Tampilkan pertanyaan pertama saat halaman dibuka
+    showQuestion();
+  </script>
+
+</body>
+</html>
